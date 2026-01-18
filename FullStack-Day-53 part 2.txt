@@ -1,0 +1,66 @@
+Day 53
+========
+
+part 2:
+========
+
+a) How to Change the Table Name
+
+Use the SQL RENAME TABLE command.
+
+Example:
+
+cur.execute("RENAME TABLE employee TO staff")
+
+
+Key Point: Renames table without losing data.
+
+b) How to Insert a Single Record
+
+Use INSERT INTO with values.
+
+Example:
+
+cur.execute(
+    "INSERT INTO staff VALUES (1, 'Nikhil', 50000)"
+)
+con.commit()
+
+c) How to Insert Two Records Manually
+
+Insert multiple rows in one query.
+
+Example:
+
+cur.execute("""
+INSERT INTO staff VALUES
+(2, 'Amit', 45000),
+(3, 'Ravi', 48000)
+""")
+con.commit()
+
+d) Read and Store Data Using for Loop
+cur.execute("SELECT * FROM staff")
+rows = cur.fetchall()
+
+for row in rows:
+    print(row)
+
+e) Insert Data Using while Loop
+i = 4
+while i <= 5:
+    cur.execute(
+        "INSERT INTO staff VALUES (%s, %s, %s)",
+        (i, f"User{i}", 40000)
+    )
+    i += 1
+con.commit()
+
+
+Key Points:
+
+commit() saves changes
+
+Loops help automate data insertion
+
+Cursor executes SQL commands
